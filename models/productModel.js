@@ -13,10 +13,10 @@ const productSchema = new mongoose.Schema({
         type: Number,
         required: [true, "Please add a price"],
     },
-    // image: {
-    //     type: String,
-    //     required: [true, "Please add an image"],
-    // },
+    image: {
+        type: String,
+        required: [true, "Please add an image"],
+    },
 });
 
 module.exports = mongoose.model("Product", productSchema);

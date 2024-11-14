@@ -3,14 +3,20 @@ const Product = require("../models/productModel");
 
 const createProduct = asyncHandler(async (req, res) => {
     const { name, description, price } = req.body;
+    const file = req.file;
     if(!name || !description || !price) {
         res.status(400);
         throw new Error("Please add all fields");
     }
+    if(!file) {
+        res.status(400);
+        throw new Error("Please add an image");
+    }
     const product = await Product.create({
         name,
         description,
-        price
+        price,
+        image: file.path
     });
     res.status(201).json({
         message: "Product created",
